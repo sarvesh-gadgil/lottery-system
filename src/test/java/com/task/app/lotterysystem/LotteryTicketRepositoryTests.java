@@ -132,6 +132,6 @@ public class LotteryTicketRepositoryTests {
 	@Test
 	@Order(9)
 	public void testTicketNotPresent() {
-		assertThat(lotteryTicketRepository.findByTicketIdAndIsCancelled(3, false)).isNull();
+		assertThat(lotteryTicketRepository.findByTicketIdAndIsCancelled(100, false)).isNull();
 	}
 }
