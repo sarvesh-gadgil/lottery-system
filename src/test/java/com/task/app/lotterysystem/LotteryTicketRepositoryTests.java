@@ -146,7 +146,7 @@ public class LotteryTicketRepositoryTests {
 	}
 
 	@Test
-	@Order(10)
+	@Order(11)
 	public void testTicketCannotBeCancelled() {
 		LotteryTicketServiceImpl service = new LotteryTicketServiceImpl();
 		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> service.cancelLotteryTicket(1));
