@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 
 import com.task.app.lotterysystem.controller.LotteryTicketController;
 import com.task.app.lotterysystem.repository.LotteryTicketLineRepository;
@@ -14,6 +15,7 @@ import com.task.app.lotterysystem.request.LotteryTicketRequest;
 import com.task.app.lotterysystem.service.impl.LotteryTicketServiceImpl;
 
 @SpringBootTest
+@Profile("test")
 class LotterySystemApplicationTests {
 
 	@Autowired

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.annotation.Rollback;
 
 import com.task.app.lotterysystem.model.LotteryTicket;
@@ -24,6 +25,7 @@ import com.task.app.lotterysystem.service.impl.LotteryTicketServiceImpl;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @TestMethodOrder(OrderAnnotation.class)
+@Profile("test")
 public class LotteryTicketRepositoryTests {
 
 	@Autowired
