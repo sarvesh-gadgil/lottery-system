@@ -21,6 +21,11 @@ public class LotteryTicket implements Serializable {
 	public LotteryTicket() {
 	}
 
+	public LotteryTicket(int ticketId) {
+		super();
+		this.ticketId = ticketId;
+	}
+
 	public LotteryTicket(int ticketId, List<LotteryTicketLine> lotteryTicketLine) {
 		super();
 		this.ticketId = ticketId;

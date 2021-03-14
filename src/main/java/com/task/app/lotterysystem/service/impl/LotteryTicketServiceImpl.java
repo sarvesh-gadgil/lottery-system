@@ -139,7 +139,7 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 		return new SplittableRandom().nextInt(0, 3);
 	}
 
-	private int getOutcome(int first, int second, int third) {
+	public int getOutcome(int first, int second, int third) {
 		if (first + second + third == 2) {
 			return 10;
 		} else if (first == second && first == third && second == third) {

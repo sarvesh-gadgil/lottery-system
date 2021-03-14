@@ -4,6 +4,14 @@ public class LotteryTicketRequest {
 
 	private int numberOfLines;
 
+	public LotteryTicketRequest() {
+	}
+
+	public LotteryTicketRequest(int numberOfLines) {
+		super();
+		this.numberOfLines = numberOfLines;
+	}
+
 	public int getNumberOfLines() {
 		return numberOfLines;
 	}
