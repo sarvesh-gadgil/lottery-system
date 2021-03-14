@@ -36,9 +36,7 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 	public LotteryTicket createLotteryTicket(LotteryTicketRequest lotteryTicketRequest) {
 
 		// Checking the input params
-		if (lotteryTicketRequest == null || lotteryTicketRequest.getNumberOfLines() <= 0) {
-			throw new BadRequestException("Invalid input parameters found");
-		}
+		checkLotteryTicketRequest(lotteryTicketRequest);
 
 		try {
 			LotteryTicket lotteryTicket = lotteryTicketRepository.save(new LotteryTicket());
@@ -110,6 +108,10 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 	@Override
 	@Transactional
 	public LotteryTicket ammendLotteryTicket(int ticketId, LotteryTicketRequest lotteryTicketRequest) {
+
+		// Checking the input params
+		checkLotteryTicketRequest(lotteryTicketRequest);
+
 		LotteryTicket ticket = getLotteryTicket(ticketId);
 		if (ticket.isTicketStatusChecked()) {
 			throw new InternalServerError("This ticket is already checked and cannot be ammended anymore");
@@ -122,6 +124,12 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 	}
 
 	// ------------------- Helper methods ----------------------
+	private void checkLotteryTicketRequest(LotteryTicketRequest lotteryTicketRequest) {
+		if (lotteryTicketRequest == null || lotteryTicketRequest.getNumberOfLines() <= 0) {
+			throw new BadRequestException("Invalid input parameters found");
+		}
+	}
+
 	private List<LotteryTicketLine> createTicketLines(int lines, LotteryTicket ticket) {
 		List<LotteryTicketLine> linesList = new ArrayList<>();
 		for (int linesItr = 1; linesItr <= lines; linesItr++) {

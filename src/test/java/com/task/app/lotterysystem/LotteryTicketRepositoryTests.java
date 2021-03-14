@@ -35,8 +35,14 @@ public class LotteryTicketRepositoryTests {
 	private LotteryTicketLineRepository lineRepository;
 
 	@Test
-	@Rollback(false)
 	@Order(1)
+	public void testTicketNotPresentForEmptyDB() {
+		assertThat(lotteryTicketRepository.findAllByIsCancelled(false)).isEmpty();
+	}
+
+	@Test
+	@Rollback(false)
+	@Order(2)
 	public void testCreateLotteryTicket() {
 		LotteryTicket ticket = lotteryTicketRepository.save(new LotteryTicket(1));
 		assertThat(ticket.getTicketId()).isGreaterThan(0);
@@ -45,7 +51,7 @@ public class LotteryTicketRepositoryTests {
 	}
 
 	@Test
-	@Order(2)
+	@Order(3)
 	public void testFindLotteryTicketById() {
 		LotteryTicket ticket = lotteryTicketRepository.findByTicketIdAndIsCancelled(1, false);
 		assertThat(ticket.getTicketId()).isEqualTo(1);
@@ -53,7 +59,7 @@ public class LotteryTicketRepositoryTests {
 
 	@Test
 	@Rollback(false)
-	@Order(3)
+	@Order(4)
 	public void testCreateLotteryTicketLines() {
 		LotteryTicketServiceImpl service = new LotteryTicketServiceImpl();
 		LotteryTicket ticket = lotteryTicketRepository.findByTicketIdAndIsCancelled(1, false);
@@ -72,7 +78,7 @@ public class LotteryTicketRepositoryTests {
 
 	@Test
 	@Rollback(false)
-	@Order(4)
+	@Order(5)
 	public void testAmmendLotteryTicketLines() {
 		LotteryTicketServiceImpl service = new LotteryTicketServiceImpl();
 		LotteryTicket ticket = lotteryTicketRepository.findByTicketIdAndIsCancelled(1, false);
@@ -89,7 +95,7 @@ public class LotteryTicketRepositoryTests {
 
 	@Test
 	@Rollback(false)
-	@Order(5)
+	@Order(6)
 	public void testCheckLotteryTicketStatus() {
 		LotteryTicket ticket = lotteryTicketRepository.findByTicketIdAndIsCancelled(1, false);
 		ticket.setTicketStatusChecked(true);
@@ -104,7 +110,7 @@ public class LotteryTicketRepositoryTests {
 
 	@Test
 	@Rollback(false)
-	@Order(6)
+	@Order(7)
 	public void testCancelLotteryTicket() {
 		LotteryTicket ticket = lotteryTicketRepository.save(new LotteryTicket(2));
 		List<LotteryTicketLine> linesList = new ArrayList<>();
@@ -118,8 +124,14 @@ public class LotteryTicketRepositoryTests {
 	}
 
 	@Test
-	@Order(7)
+	@Order(8)
 	public void testFindCancelledTicket() {
 		assertThat(lotteryTicketRepository.findByTicketIdAndIsCancelled(2, false)).isNull();
+	}
+
+	@Test
+	@Order(9)
+	public void testTicketNotPresent() {
+		assertThat(lotteryTicketRepository.findByTicketIdAndIsCancelled(3, false)).isNull();
 	}
 }

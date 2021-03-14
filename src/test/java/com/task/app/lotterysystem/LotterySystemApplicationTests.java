@@ -46,4 +46,12 @@ class LotterySystemApplicationTests {
 		assertThatExceptionOfType(RuntimeException.class)
 				.isThrownBy(() -> lotteryTicketService.createLotteryTicket(new LotteryTicketRequest(-1)));
 	}
+
+	@Test
+	public void checkInputParamsValidityForAmmend() {
+		assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> lotteryTicketService.ammendLotteryTicket(1, new LotteryTicketRequest(0)));
+		assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> lotteryTicketService.ammendLotteryTicket(1, new LotteryTicketRequest(-1)));
+	}
 }
