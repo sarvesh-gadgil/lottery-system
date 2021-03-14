@@ -1,6 +1,7 @@
 package com.task.app.lotterysystem;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ import com.task.app.lotterysystem.model.LotteryTicket;
 import com.task.app.lotterysystem.model.LotteryTicketLine;
 import com.task.app.lotterysystem.repository.LotteryTicketLineRepository;
 import com.task.app.lotterysystem.repository.LotteryTicketRepository;
+import com.task.app.lotterysystem.request.LotteryTicketRequest;
 import com.task.app.lotterysystem.service.impl.LotteryTicketServiceImpl;
 
 @DataJpaTest
@@ -133,5 +135,13 @@ public class LotteryTicketRepositoryTests {
 	@Order(9)
 	public void testTicketNotPresent() {
 		assertThat(lotteryTicketRepository.findByTicketIdAndIsCancelled(100, false)).isNull();
+	}
+
+	@Test
+	@Order(10)
+	public void testTicketCannotBeAmmended() {
+		LotteryTicketServiceImpl service = new LotteryTicketServiceImpl();
+		assertThatExceptionOfType(RuntimeException.class)
+				.isThrownBy(() -> service.ammendLotteryTicket(1, new LotteryTicketRequest(2)));
 	}
 }
