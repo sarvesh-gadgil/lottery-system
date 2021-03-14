@@ -144,4 +144,11 @@ public class LotteryTicketRepositoryTests {
 		assertThatExceptionOfType(RuntimeException.class)
 				.isThrownBy(() -> service.ammendLotteryTicket(1, new LotteryTicketRequest(2)));
 	}
+
+	@Test
+	@Order(10)
+	public void testTicketCannotBeCancelled() {
+		LotteryTicketServiceImpl service = new LotteryTicketServiceImpl();
+		assertThatExceptionOfType(RuntimeException.class).isThrownBy(() -> service.cancelLotteryTicket(1));
+	}
 }
