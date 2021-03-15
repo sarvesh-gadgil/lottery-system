@@ -190,7 +190,7 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 	}
 
 	private int generateRandomNumber() {
-		// Generate integers including 0 and 2
+		// Generate integers between and including 0 and 2
 		return new SplittableRandom().nextInt(0, 3);
 	}
 
