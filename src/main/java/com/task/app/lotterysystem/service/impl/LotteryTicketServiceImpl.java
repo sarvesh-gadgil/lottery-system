@@ -173,7 +173,7 @@ public class LotteryTicketServiceImpl implements LotteryTicketService {
 	}
 
 	private List<LotteryTicketLine> createTicketLines(int lines, LotteryTicket ticket) {
-		// Create tickets object
+		// Create ticket lines object
 		List<LotteryTicketLine> linesList = new ArrayList<>();
 
 		// Iterate the lines
